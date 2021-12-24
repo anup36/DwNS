@@ -73,17 +73,17 @@ contract BNS is ERC1155{
         }
     }
 
-    // function sellTld(uint tokenId, uint price) public {
-    //     require(TLDs[tokenId].owner == msg.sender, "You are not Authorised");
-    //     TLDs[tokenId].readyToBeSold = true;
-    //     TLDs[tokenId].price = price;
-    //     safeTransferFrom(msg.sender, address(0), tokenId, 1, "");
-    // }
+    function sellTld(uint tokenId, uint price) public {
+        require(TLDs[tokenId].owner == msg.sender, "You are not Authorised");
+        TLDs[tokenId].readyToBeSold = true;
+        TLDs[tokenId].price = price;
+        safeTransferFrom(msg.sender, address(0), tokenId, 1, "");
+    }
 
-    // function buyTld(uint tokenId) public {
-    //     TLDs[tokenId].owner = msg.sender;
-    //     TLDs[tokenId].readyToBeSold = false;
-    //     safeTransferFrom(address(0), msg.sender, tokenId, 1, "");
-    //     token_sold = token_sold + 1;
-    // }
+    function buyTld(uint tokenId) public {
+        TLDs[tokenId].owner = msg.sender;
+        TLDs[tokenId].readyToBeSold = false;
+        safeTransferFrom(address(0), msg.sender, tokenId, 1, "");
+        token_sold = token_sold + 1;
+    }
 }
